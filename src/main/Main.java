@@ -5,12 +5,9 @@ import processing.core.*;
 import java.text.DecimalFormat;
 
 public class Main extends PApplet {
-    // Input object
-    private Input input;
-
     // Variables of the swerve drivebase
-    private int W = 0;
-    private int H = 0;
+    private int W = 500;
+    private int H = 500;
 
     // The coordinates of the motors (calculated from W and H)
     private float[][] motorCoordinates;
@@ -21,7 +18,7 @@ public class Main extends PApplet {
 
     @Override
     public void settings() {
-        size(720, 480);
+        size(1280, 720);
     }
 
     @Override
@@ -33,19 +30,12 @@ public class Main extends PApplet {
     public void draw() {
         background(255);
 
-        // Update W and H variables if needed
-        if (mousePressed && mouseButton == LEFT) {
-            W = Math.abs(mouseX - width / 2) * 2;
-            H = Math.abs(mouseY - height / 2) * 2;
-
-            // Update the coordinates of the motors
-            motorCoordinates = new float[][]{
-                    {width / 2 + W / 2, height / 2 - H / 2},
-                    {width / 2 - W / 2, height / 2 - H / 2},
-                    {width / 2 + W / 2, height / 2 + H / 2},
-                    {width / 2 - W / 2, height / 2 + H / 2}
-            };
-        }
+        motorCoordinates = new float[][]{
+                {width / 2 + W / 2, height / 2 - H / 2},
+                {width / 2 - W / 2, height / 2 - H / 2},
+                {width / 2 + W / 2, height / 2 + H / 2},
+                {width / 2 - W / 2, height / 2 + H / 2}
+        };
 
 
         float x1 = (mouseX - width / 2) / (float) width;
